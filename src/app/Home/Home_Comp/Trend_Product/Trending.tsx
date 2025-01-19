@@ -36,6 +36,22 @@ const trendingCardsData: products[] = [
   },
 ];
 
+// const getTrendingProduct = async() => {
+//   const  query = `*[_value == "product" && "home_TrendingProduct" in tags]{
+  
+//    _id,
+//     title,
+//     image {
+//     asset-> {
+//     url
+//    }
+//    },
+//     price,
+//   }`
+
+//    return await client.fetch(query)
+// }
+
 
 
 const Trending = () => {

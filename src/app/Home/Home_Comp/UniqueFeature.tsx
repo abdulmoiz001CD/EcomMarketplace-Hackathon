@@ -2,7 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 import Button from '@/app/Home/Home_Comp/Button'
 
+// const getUniqueFeature = async() => {
+//    const query = `*[_type == "product" && "home_UniqueFeatures" in tags]{
+    
+//     image {
+//     asset->{
+//     url
+//     } 
+//     }
+//    }`
+//    return await client.fetch(query)
+// }
+
+  
+
 const UniqueFeature = () => {
+  //  const getUniqueFeatureEL = await getUniqueFeature()
+  //  const image = getUniqueFeatureEL.image?.asset?.url || '';
   return (
     <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 xs:bg-white md:bg-[#F1F0FF]">
       <div className="flex flex-col max-w-[1177px] mx-auto md:flex-row md:justify-between gap-9 md:gap-6 sm:gap-8 lg:gap-12 items-center">
