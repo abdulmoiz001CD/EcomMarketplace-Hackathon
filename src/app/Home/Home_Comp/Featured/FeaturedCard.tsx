@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { FiShoppingCart } from "react-icons/fi";
-import { useDispatch } from 'react-redux';  // Use regular useDispatch for now
+import { useDispatch } from 'react-redux';  
 import { addtoCart } from '@/app/Shop/Redux/CartSlice';
 
 interface ProductCardProps {
@@ -10,10 +10,10 @@ interface ProductCardProps {
   description: string;
   price: string | number;
   id:string;
-
+  stockLevel:string|number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, price,}) => {
+const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, price,stockLevel}) => {
  
   const dispatch = useDispatch();
 
@@ -23,7 +23,8 @@ const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, 
           title,
           description,
           image,
-          price
+          price,
+          stockLevel,
       };
       console.log('Dispatching item:', item); // Debug log
       dispatch(addtoCart(item));
@@ -52,7 +53,11 @@ const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, 
           <div className="w-[14px] h-1 bg-gray-300"></div>
         </div>
         <p className="text-600 text-sm text-[#151875]">{description}</p>
-        <p className="text-600 text-sm text-[#151875]">{price}</p>
+        <div className="flex justify-between w-full pt-2"> 
+        <p className="text-600 text-sm text-[#151875]">{price}$</p>
+        <p className="text-600 text-sm text-[#151875]">stocks: <span className="text-600 text-sm text-[#e03232]">{ stockLevel}</span></p>
+         </div>
+       
       </div>
     </div>
   );

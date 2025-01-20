@@ -1,5 +1,6 @@
 import TrendingCard from '@/app/Home/Home_Comp/Trend_Product/TrendingCard'
-
+import { client } from '@/sanity/lib/client';
+import Link from 'next/link';
 
 interface products {
   id: string;
@@ -9,52 +10,31 @@ interface products {
   price: string;
 }
 
-const trendingCardsData: products[] = [
-  {
-    id: "1",
-    image: "./images/trend1.svg",
-    title: "Cantilever chair",
-    price: "$42.00",
-  },
-  {
-    id: "2",
-    image: "./images/trend2.svg",
-    title: "Cantilever chair",
-    price: "$42.00",
-  },
-  {
-    id: "3",
-    image: "./images/trend3.svg",
-    title: "Cantilever chair",
-    price: "$42.00",
-  },
-  {
-    id: "4", // Corrected key to be unique
-    image: "./images/trend4.svg",
-    title: "Cantilever chair",
-    price: "$42.00",
-  },
-];
 
-// const getTrendingProduct = async() => {
-//   const  query = `*[_value == "product" && "home_TrendingProduct" in tags]{
+
+const getTrendingProduct = async() => {
+  const  query = `*[_type == "product" && "home_TrendingProducts" in tags]{
   
-//    _id,
-//     title,
-//     image {
-//     asset-> {
-//     url
-//    }
-//    },
-//     price,
-//   }`
+   _id,
+    name,
+    image {
+    asset-> {
+    url
+   }
+   },
+    price,
+    stockLevel,
+    description,
+  }`
 
-//    return await client.fetch(query)
-// }
+   return await client.fetch(query)
+}
 
 
 
-const Trending = () => {
+const Trending = async() => {
+
+   const getLatestProductEl = await getTrendingProduct();
   return (
     <section className="max-w-[1177] flex flex-col gap-2 mx-auto px-4 pt-[70px]">
       {/* Heading */}
@@ -64,8 +44,15 @@ const Trending = () => {
       <div className="lg:max-w-[1177px] w-full mx-auto py-14">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-9 justify-items-center gap-y-[90px]">
-          {trendingCardsData.map((card) => (
-            <TrendingCard key={card.id} {...card} />
+          {getLatestProductEl.map((cardData:any) => (
+              <Link href={`/ProductDetail/${cardData._id}`}>
+            <TrendingCard key={cardData._id}
+            id={cardData._id}
+            title={cardData.name}
+            image={cardData.image?.asset?.url || ""}
+            price={cardData.price.toString()}
+            stockLevel={cardData.stockLevel}
+            description={cardData.description} /></Link>
           ))}
         </div>
       </div>

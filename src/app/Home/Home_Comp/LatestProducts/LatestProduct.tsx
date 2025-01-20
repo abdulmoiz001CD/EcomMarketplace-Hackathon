@@ -1,6 +1,7 @@
 import React from 'react'
 import LatestProductCard from '@/app/Home/Home_Comp/LatestProducts/LatestProductCard'
 import { client } from '@/sanity/lib/client';
+import Link from 'next/link';
 
 
 interface products {
@@ -10,78 +11,22 @@ interface products {
   price: string;
 }
 
-// const latestProductsData: products[] = [
-//   {
-//     id: "1",
-//     image: "./images/lchair1.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-//   {
-//     id: "2",
-//     image: "./images/lchair2.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-//   {
-//     id: "3",
-//     image: "./images/chair4.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-//   {
-//     id: "4",
-//     image: "./images/lchair4.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-//   {
-//     id: "5",
-//     image: "./images/lchair5.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-//   {
-//     id: "6",
-//     image: "./images/chair2.svg",
-//     title: "Cantilever chair",
-//     price: "$42.00",
-//   },
-// ];
-
-
-
-
-
-// async function getFeaturedProducts() {
-//   const query = `*[_type == "product" && "home_FeatureProducts" in tags]{
-//     _id,
-//     title,
-//     image {
-//       asset->{
-//         url
-//       }
-//     },
-//     price,
-//     description,
-//   }`;
-  
-//   return await client.fetch(query);
-// }
 
 
 
  async function getLatestProduct(){
     const query = `*[_type == "product" &&  "home_LatestProductsChairs" in tags]{
     _id,
-    title,
+    name,
     image {
     asset->{
      url
      } 
     },
     price,
-  
+    description,
+    stockLevel,
+   
     }`
     
     return await client.fetch(query);
@@ -117,11 +62,16 @@ const LatestProduct = async() => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center gap-y-[90px]">
           {latestProductsData?.map((cardData:any) => {
             return (
+              <Link href={`/ProductDetail/${cardData._id}`}>
               <LatestProductCard  key={cardData._id}
-              title={cardData.title}
+              name={cardData.name}
               image={cardData.image?.asset?.url || ''}
               price={cardData.price.toString()}
+              id={cardData._id}
+              description={cardData.description}
+              stockLevel={cardData.stockLevel}
               />
+              </Link>
             )
           })}
 

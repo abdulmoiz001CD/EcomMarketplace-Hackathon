@@ -41,6 +41,7 @@
 import React from 'react';
 import FeaturedCard from '@/app/Home/Home_Comp/Featured/FeaturedCard';
 import { client } from '@/sanity/lib/client';
+import Link from 'next/link';
 
 interface Product {
   _id: string;
@@ -52,6 +53,7 @@ interface Product {
   };
   price: number;
   description: string;
+  stockLevel:number|string
 }
 
 // Separate async function for data fetching
@@ -66,6 +68,7 @@ async function getFeaturedProducts() {
     },
     price,
     description,
+    stockLevel,
   }`;
   
   return await client.fetch(query);
@@ -87,6 +90,7 @@ async function FeaturedProducts() {
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
           {featureProducts?.map((cardData: Product) => (
+            <Link href={`/ProductDetail/${cardData._id}`}>
             <FeaturedCard
               key={cardData._id}
               id={cardData._id}
@@ -94,7 +98,10 @@ async function FeaturedProducts() {
               image={cardData.image?.asset?.url || ''}
               price={cardData.price.toString()}
               description={cardData.description}
+              stockLevel={cardData.stockLevel}
             />
+          </Link>
+          
           ))}
         </div>
       </div>
