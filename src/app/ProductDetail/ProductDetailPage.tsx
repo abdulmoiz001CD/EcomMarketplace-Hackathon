@@ -1,38 +1,24 @@
-'use client';
-
+'use client'
 import { useDispatch } from 'react-redux';
 import { addtoCart } from '@/app/Shop/Redux/CartSlice';
-
-interface productType {
-  _id: string;
-  name: string;
-  description: string;
-  image: {
-    asset: {
-      _ref: string;
-      _type: string;
-      url: string;
-    };
-  };
-  price: string;
-  discountPercentage?: number;
-  stockLevel: number;
-  category: string;
-}
+import type { SanityProduct, CartItem } from '../types';
 
 interface ProductDetailPageProps {
-  product: productType;
+  product: SanityProduct;
 }
 
-const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
+const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    const item = {
+    const item: CartItem = {
       id: product._id,
-      title: product.name,
+      title: product.title, // Use the title field from Sanity
       description: product.description,
       image: product.image.asset.url,
+      price: product.price,
+      quantity: 1,
+      name:product.name,
     };
     dispatch(addtoCart(item));
   };
@@ -46,7 +32,7 @@ const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
               <div className="aspect-square relative rounded-lg overflow-hidden bg-gray-100">
                 <img
                   src={product.image.asset.url}
-                  alt={product.name}
+                  alt={product.title}
                   className="object-cover w-full h-full"
                 />
               </div>
@@ -55,7 +41,7 @@ const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
             <div className="w-full md:w-1/2 flex flex-col gap-4">
               <div className="space-y-2">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-                  {product.name}
+                  {product.title}
                 </h1>
 
                 <div className="flex items-center gap-2">

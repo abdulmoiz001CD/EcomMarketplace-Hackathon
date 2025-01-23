@@ -34,7 +34,7 @@ const CardTwo : React.FC<CardType> = ({title, btnText, image,alt}) => {
                             src={image}
                             alt={alt}
                             width={213}
-            height={207}
+                            height={213}
             className="w-full object-cover rounded-lg"
                         />
                     </div>

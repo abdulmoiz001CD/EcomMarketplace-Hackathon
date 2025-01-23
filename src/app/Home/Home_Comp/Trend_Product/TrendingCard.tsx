@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 import { addtoCart } from '@/app/Shop/Redux/CartSlice';
 
 interface ProductCardProps {
-  image: string;
-  title: string;
-  price: string;
-  stockLevel: string | number;
   id: string;
+  title: string;
   description: string;
+  image: string;
+  price: string | number;
+  stockLevel: string | number;
+  quantity?: number; 
+  name?: string; 
 }
 
 const TrendingCard: React.FC<ProductCardProps> = ({ id, image, title, price, stockLevel, description }) => {
@@ -20,11 +22,13 @@ const TrendingCard: React.FC<ProductCardProps> = ({ id, image, title, price, sto
   const handleAddToCart = () => {
     const item = {
       id,
-      image,
       title,
+      description,
+      image,
       price,
       stockLevel,
-      description,
+      name:title,
+      quantity:1
     };
     console.log('Dispatching item:', item); // Debug log
     dispatch(addtoCart(item));

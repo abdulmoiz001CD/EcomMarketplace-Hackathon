@@ -97,12 +97,16 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { remove } from '@/app/Shop/Redux/CartSlice';
 import { RootState } from '@/app/Shop/Redux/Store'; // You'll need to import your RootState type
+import Button from '../Home/Home_Comp/Button';
+import Link from 'next/link';
 
 interface CartItem {
   id: string;
   title: string;
   description: string;
   image: string;
+  quantity:number;
+  name:string;
 }
 
 const CartDisplay: React.FC = () => {
@@ -122,14 +126,15 @@ const CartDisplay: React.FC = () => {
   }
 
   return (
-    <div className="p-4 min-h-[40rem]">
-      <h2 className="text-2xl font-bold mb-4 text-center p-4">Shopping Cart ({cartItems.length} items)</h2>
+    <>
+    <div className="p-4 min-h-[40rem] flex flex-col justify-items-center items-center">
+      <h2 className="text-2xl font-bold mb-4 p-4 text-[#480f48]">Shopping Cart ({cartItems.length} items)</h2>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {cartItems.map((item: CartItem) => (
           <div 
             key={item.id} 
-            className="bg-white rounded-lg shadow-md  flex"
+            className="bg-white rounded-lg shadow-md  flex h-[10rem]"
           >
           
             {/* Card Content */}
@@ -144,8 +149,9 @@ const CartDisplay: React.FC = () => {
             </div>
 
             <div className='flex flex-col'>
-            <h3 className="text-lg font-semibold">{item.title}</h3>
+            <h3 className="text-lg font-semibold">{item.title? item.title :item.name}</h3>
             <p className="text-sm text-gray-600">{item.description}</p>
+            <p className="text-sm font-medium mt-2">Quantity: {item.quantity}</p>
              {/* Card Footer */}
             <div className="p-4 border-t flex justify-end">
               <button
@@ -173,8 +179,28 @@ const CartDisplay: React.FC = () => {
           </div>
         ))}
       </div>
+
+      <Link href="Shop/checkOutForm"> 
+        <button className=' mt-[9rem] bg-[#6c146c] text-white p-3 rounded'>Go to Checkout Form</button>
+      </Link>
+
     </div>
+
+  
+   
+    </>
   );
+
+
+
+  
+
+
+
+
+
+
+
 };
 
 export default CartDisplay;

@@ -5,15 +5,17 @@ import { useDispatch } from 'react-redux';
 import { addtoCart } from '@/app/Shop/Redux/CartSlice';
 
 interface ProductCardProps {
-  image: string;
+  id: string;
   title: string;
   description: string;
+  image: string;
   price: string | number;
-  id:string;
-  stockLevel:string|number;
+  stockLevel: string | number;
+  quantity?: number; 
+  name?: string; 
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, price,stockLevel}) => {
+const ProductCard: React.FC<ProductCardProps> = ({id,image, title,name,quantity, description, price,stockLevel}) => {
  
   const dispatch = useDispatch();
 
@@ -25,6 +27,8 @@ const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, 
           image,
           price,
           stockLevel,
+          name:title,
+          quantity:1
       };
       console.log('Dispatching item:', item); // Debug log
       dispatch(addtoCart(item));
@@ -35,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({id,image, title, description, 
     <div className="group relative flex flex-col w-[270px] bg-[#F6F7FB] rounded-lg shadow-lg border border-white overflow-hidden items-center justify-center text-center transition-transform hover:scale-105">
       {/* Image Section */}
       <div className="relative h-[236px] w-[178px] m-[20px] mx-[50px] flex items-center justify-center bg-[#F6F7FB]">
-        <Image src={image} alt={title} fill className="object-cover" />
+        <Image src={image} alt={`Feactured card`} fill   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" />
       </div>
 
       {/* Hover Cart Icon */}

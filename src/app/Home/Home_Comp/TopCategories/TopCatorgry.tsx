@@ -1,4 +1,4 @@
-import TopCard from '@/app/Home/Home_Comp/TopCard'
+import TopCard from '@/app/Home/Home_Comp/TopCategories/TopCard'
 interface products{
     image: string;
     title: string;
@@ -41,7 +41,7 @@ const TopCatorgry = () => {
       price="$42.00"
     />
       <TopCard
-      key="3"
+      key="4"
       image="./images/top4.svg"
       title="Cantilever chair"
       price="$42.00"

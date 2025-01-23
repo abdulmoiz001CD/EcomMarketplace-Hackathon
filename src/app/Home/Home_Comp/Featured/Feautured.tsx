@@ -54,6 +54,8 @@ interface Product {
   price: number;
   description: string;
   stockLevel:number|string
+  quantity?: number; // This is missing in your object
+  name?: string; // This might be another missing property
 }
 
 // Separate async function for data fetching
@@ -90,15 +92,16 @@ async function FeaturedProducts() {
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
           {featureProducts?.map((cardData: Product) => (
-            <Link href={`/ProductDetail/${cardData._id}`}>
+            <Link href={`/ProductDetail/${cardData._id}`} key={cardData._id}>
             <FeaturedCard
-              key={cardData._id}
               id={cardData._id}
               title={cardData.title}
               image={cardData.image?.asset?.url || ''}
               price={cardData.price.toString()}
               description={cardData.description}
               stockLevel={cardData.stockLevel}
+              quantity={cardData.quantity}
+              name={cardData.name}
             />
           </Link>
           

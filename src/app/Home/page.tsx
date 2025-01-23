@@ -7,7 +7,7 @@ import UniqueFeature from '@/app/Home/Home_Comp/UniqueFeature'
 import Trending from '@/app/Home/Home_Comp/Trend_Product/Trending'
 import Discount from '@/app/Home/Home_Comp/DiscountSec/Discount'
 import OffItem from '@/app/Home/Home_Comp/OffItem'
-import TopCatorgry from '@/app/Home/Home_Comp/TopCatorgry'
+import TopCatorgry from '@/app/Home/Home_Comp/TopCategories/TopCatorgry'
 import Update from '@/app/Home/Home_Comp/Update'
 import Blog from '@/app/Components/Blog'
 

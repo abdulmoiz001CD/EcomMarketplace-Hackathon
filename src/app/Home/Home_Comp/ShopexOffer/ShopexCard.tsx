@@ -14,14 +14,15 @@ const Shopex: React.FC<CardProps> = ({ imageUrl, heading, paragraph }) => {
         <Image
           src={imageUrl}
           alt={heading}
-          width={65}
-          height={42.86}
-          layout="intrinsic" // This ensures the image respects its natural size
-          objectFit="contain" // Makes the image fit without cropping
-          className="w-full h-full"
+          width={100} 
+          height={100} 
+       
+          className="w-full h-auto object-contain" 
         />
       </div>
-      
+
+
+
       <h3 className="text-xl font-semibold mt-4">
         {heading}
       </h3>
