@@ -45,8 +45,8 @@ const Trending = async() => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-9 justify-items-center gap-y-[90px]">
           {getLatestProductEl.map((cardData:any) => (
-              <Link href={`/ProductDetail/${cardData._id}`}>
-            <TrendingCard key={cardData._id}
+              <Link href={`/ProductDetail/${cardData._id}`}  key={cardData._id}>
+            <TrendingCard
             id={cardData._id}
             title={cardData.name}
             image={cardData.image?.asset?.url || ""}
