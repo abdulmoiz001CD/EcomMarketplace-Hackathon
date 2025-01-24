@@ -2,8 +2,15 @@ import { notFound } from 'next/navigation';
 import { client } from '@/sanity/lib/client';
 import ProductDetailPage from '@/app/ProductDetail/ProductDetailPage';
 import { SanityProduct } from '@/app/types';
+import { NextPage } from 'next';
 
-// Fetch product details based on the slug
+interface PageProps {
+  params: {
+    slug: string;
+  }
+}
+
+
 async function getProductDetail(slug: string): Promise<SanityProduct | null> {
   try {
     const data = await client.fetch(
@@ -53,16 +60,18 @@ export async function generateStaticParams() {
   }
 }
 
-// Page component
-export default async function Page({ params }: { params: { slug: string } }) {
+
+const Page: NextPage<PageProps> = async ({ params }) => {
   // Await the product data
   const product = await getProductDetail(params.slug);
 
-  // If no product is found, render a 404 page
+ 
   if (!product) {
     notFound();
   }
 
-  // Render the product detail page
+ 
   return <ProductDetailPage product={product} />;
 }
+
+export default Page;
