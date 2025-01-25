@@ -62,8 +62,9 @@ const LatestProduct = async() => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center gap-y-[90px]">
           {latestProductsData?.map((cardData:any) => {
             return (
-              <Link href={`/ProductDetail/${cardData._id}`}>
-              <LatestProductCard  key={cardData._id}
+              <Link href={`/ProductDetail/${cardData._id}`} key={cardData._id}>
+              <LatestProductCard 
+              title={cardData.title}
               name={cardData.name}
               image={cardData.image?.asset?.url || ''}
               price={cardData.price.toString()}

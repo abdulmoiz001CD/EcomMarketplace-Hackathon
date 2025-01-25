@@ -1,11 +1,41 @@
 'use client'
 import { useDispatch } from 'react-redux';
 import { addtoCart } from '@/app/Shop/Redux/CartSlice';
-import type { SanityProduct, CartItem } from '../types';
+
+
+export interface SanityProduct {
+    _id: string;
+    name: string;
+    title: string;
+    description: string;
+    image: {
+      asset: {
+        _ref: string;
+        _type: string;
+        url: string;
+      };
+    };
+    price: number;
+    discountPercentage?: number;
+    stockLevel: number;
+    category: string;
+  }
+  
+
 
 interface ProductDetailPageProps {
   product: SanityProduct;
 }
+
+export interface CartItem {
+      id: string;
+      title: string;
+      description: string;
+      image: string;
+      price: number;
+      quantity: number;
+      name:string
+    }
 
 const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product }) => {
   const dispatch = useDispatch();
