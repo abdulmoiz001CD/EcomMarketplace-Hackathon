@@ -1,5 +1,5 @@
 import React from 'react'
-import FashionItems from '../Components/FashionItems/FashionItems'
+import FashionItems from './FashionItems/FashionItems'
 
 
 

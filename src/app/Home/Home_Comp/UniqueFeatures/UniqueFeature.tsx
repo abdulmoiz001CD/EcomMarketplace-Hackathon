@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from '@/app/Home/Home_Comp/Button'
+import Button from '@/app/Home/Home_Comp/UniqueFeatures/Button'
 
 // const getUniqueFeature = async() => {
 //    const query = `*[_type == "product" && "home_UniqueFeatures" in tags]{

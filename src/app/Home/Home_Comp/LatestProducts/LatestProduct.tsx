@@ -75,6 +75,7 @@ const LatestProduct = async() => {
               </Link>
             )
           })}
+        
 
         </div>
       </div>

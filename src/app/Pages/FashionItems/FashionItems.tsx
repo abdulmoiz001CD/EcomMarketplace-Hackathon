@@ -1,15 +1,61 @@
 import React from 'react'
-import Card from '@/app/Components/FashionItems/Card'
+import Card from '@/app/Pages/FashionItems/Card'
 import Image from 'next/image'
-interface products {
-  image: string;
-  title: string;
-  description: string;
+import { client } from '@/sanity/lib/client';
+import Link from 'next/link';
+// interface products {
+//   image: string;
+//   title: string;
+//   description: string;
+//   price: string;
+// }
+
+
+export interface Product {
+  _id: string;
+  name: string;
+  image: {
+    asset: {
+      url: string;
+    };
+  };
   price: string;
+  description: string;
+  stockLevel: number;
+  tags?: string[]; 
+  discountPercentage:number
 }
 
 
-const FashionItems = () => {
+const FashionItems = async() => {
+
+      const query = `*[_type == "product" &&  "FashionItem" in tags]{
+        _id,
+        name,
+        image {
+        asset->{
+         url
+         } 
+        },
+        price,
+        description,
+        stockLevel,
+        discountPercentage
+        }`
+        
+       const data:Product[] = await client.fetch(query);
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
 
@@ -74,108 +120,27 @@ const FashionItems = () => {
 
         {/* Products Grid */}
         <div className="w-full">
+        {/* FashionItem */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-9  gap-y-[80px] justify-items-center">
-            <Card
-              key="1"
-              image="./images/pages1.svg"
-              title="Vel elit euismod"
-
+           
+           {data.map((value,index)=>{
+            return(
+              <Link href={`/ProductDetail/${value._id}`} key={value._id}>
+              <Card
+              id={value._id}
+              description={value.description}
+              stockLevel={value.stockLevel}
+              image={value.image?.asset?.url || ""}
+              title={value.name}
+              price={value.price}
+              discount={value.discountPercentage}
+             
             />
-            <Card
-              key="2"
-              image="./images/pages2.svg"
-              title="Vel elit euismod"
-
-            />
-            <Card
-              key="3"
-              image="./images/pages3.svg"
-              title="Vel elit euismod"
-
-            />
-            <Card
-              key="4"
-              image="./images/pages4.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            <Card
-              key="4"
-              image="./images/pages5.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            <Card
-              key="4"
-              image="./images/pages6.svg"
-              title="Vel elit euismod"
-
-            />
-
-            <Card
-              key="4"
-              image="./images/pages7.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            <Card
-              key="4"
-              image="./images/pages8.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-
-            <Card
-              key="4"
-              image="./images/pages9.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-
-            <Card
-              key="4"
-              image="./images/pages10.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-
-            <Card
-              key="4"
-              image="./images/pages11.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-
-
-            <Card
-              key="4"
-              image="./images/pages12.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-
-
-
-
-
-
-
+            </Link>
+            )
+           })}
+           
+        
           </div>
         </div>
 
