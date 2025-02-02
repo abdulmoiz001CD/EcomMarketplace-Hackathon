@@ -1,15 +1,50 @@
 import React from 'react'
-import Card from '@/app/Components/ProductPage/Card'
+import Card from '@/app/Products/ProductPage/Card'
 import Image from 'next/image'
-interface products {
-  image: string;
-  title: string;
-  description: string;
+import Link from 'next/link';
+import { client } from '@/sanity/lib/client';
+
+
+
+export interface Product {
+  _id: string;
+  name: string;
+  image: {
+    asset: {
+      url: string;
+    };
+  };
   price: string;
+  description: string;
+  stockLevel: number;
+  tags?: string[]; 
+  discountPercentage:number
 }
 
+const FashionItems = async() => {
 
-const FashionItems = () => {
+
+     const query = `*[_type == "product" &&  "home_LatestProductsChairs" in tags]{
+        _id,
+        name,
+        image {
+        asset->{
+         url
+         } 
+        },
+        price,
+        description,
+        stockLevel,
+        discountPercentage
+        }`
+        
+       const data:Product[] = await client.fetch(query);
+
+
+
+
+
+
   return (
     <>
 
@@ -75,7 +110,27 @@ const FashionItems = () => {
         {/* Products Grid */}
         <div className="w-full">
           <div className="grid grid-cols-1 gap-9  gap-y-[80px] justify-items-start">
-            <Card
+
+          {data.map((value,index)=>{
+            return(
+              <Link href={`/ProductDetail/${value._id}`} key={value._id}>
+              <Card
+              id={value._id}
+              description={value.description}
+              stockLevel={value.stockLevel}
+              image={value.image?.asset?.url || ""}
+              title={value.name}
+              price={value.price}
+              discount={value.discountPercentage}
+             
+            />
+            </Link>
+            )
+           })}
+
+
+
+            {/* <Card
               key="1"
               image="./images/chair4.svg"
               title="Vel elit euismod"
@@ -129,7 +184,7 @@ const FashionItems = () => {
 
            
            
-
+ */}
 
 
 

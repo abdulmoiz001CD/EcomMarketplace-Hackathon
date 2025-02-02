@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from '../Components/ProductPage/Product'
+import Product from './ProductPage/Product'
 
 
 
