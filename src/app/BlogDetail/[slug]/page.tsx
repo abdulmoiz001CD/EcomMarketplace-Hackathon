@@ -41,7 +41,7 @@ async function getProductDetail(slug: string): Promise<any | null> {
 }
 
 // 3. Static Props Fetching for Dynamic Pages
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({ params }: { params:Promise<{slug:string}>}) {
   const { slug } = await params;
 
   // Fetch product details based on the slug
