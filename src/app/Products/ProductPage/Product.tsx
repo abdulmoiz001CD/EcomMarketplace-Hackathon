@@ -65,6 +65,7 @@ const FashionItems = async() => {
 
          
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 lg:gap-8">
+ 
   {/* First child - Number input */}
   <div className="flex items-center gap-2 w-full sm:w-auto">
     <p className="text-gray-600 text-[16px] whitespace-nowrap">Per Pages:</p>
@@ -130,61 +131,6 @@ const FashionItems = async() => {
 
 
 
-            {/* <Card
-              key="1"
-              image="./images/chair4.svg"
-              title="Vel elit euismod"
-
-            />
-            <Card
-              key="2"
-              image="./images/chair3.svg"
-              title="Vel elit euismod"
-
-            />
-            <Card
-              key="3"
-              image="./images/chair1.svg"
-              title="Vel elit euismod"
-
-            />
-            <Card
-              key="4"
-              image="./images/chair2.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            <Card
-              key="4"
-              image="./images/chair2.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            <Card
-              key="4"
-              image="./images/chair2.svg"
-              title="Vel elit euismod"
-
-            />
-
-            <Card
-              key="4"
-              image="./images/chair2.svg"
-              title="Vel elit euismod"
-
-            />
-
-
-            
-
-
-           
-           
- */}
 
 
 

@@ -14,7 +14,7 @@ const Navbar = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   console.log('Cart Items:', cartItems); // Debug log
   return (
-    <nav className="bg-[#7E33E0] text-white shadow-lg xs:hidden md:block md:px-[17px] sticky top-0 backdrop-blur z-10">
+    <nav className="bg-[#7E33E0] text-white shadow-lg hidden md:block md:px-[17px] sticky top-0  backdrop-blur z-10">
       <div className="max-w-[1177px] w-full mx-auto sm:px-[20px]">
         <div className="flex justify-between items-center md:h-[55px] xl:h-16">
        

@@ -13,7 +13,7 @@ const Footer = () => {
               <ul className="flex flex-col space-y-4">
                
 {/* search bar */}
-
+{/* 
 <div className="flex xs:max-w-[317px] md:max-w-[200px] xl:max-w-[317px] w-full xs:h-[40px] md:h-[30px] xl:h-[40px] bg-red-500 items-center border border-gray-300  focus-within:bg-red-600 transition-colors duration-300">
   <input
     type="text"
@@ -22,6 +22,17 @@ const Footer = () => {
   />
   <div className="flex items-center justify-center cursor-pointer">
     <CiSearch className="text-white xs:text-[45px] md:text-[36px] xl:text-[51px] p-2" />
+  </div>
+</div> */}
+
+<div className="flex w-full max-w-[317px] md:max-w-[200px] xl:max-w-[317px] h-[40px] md:h-[30px] xl:h-[40px] bg-[#dde0ff] items-center border border-gray-300 rounded-lg focus-within:bg-[#758bb2] transition-colors duration-300">
+  <input
+    type="text"
+    placeholder="Search..."
+    className="w-full h-full px-3 xl:pl-2 text-sm border-none bg-transparent text-white placeholder-gray-200 focus:outline-none"
+  />
+  <div className="h-full aspect-square flex items-center justify-center cursor-pointer p-2 md:p-1.5 xl:p-2">
+    <CiSearch className="text-[#252222] text-[24px] md:text-[20px] xl:text-[24px]" />
   </div>
 </div>
 

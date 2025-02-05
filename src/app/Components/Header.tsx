@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 md:top-[3.4rem] xl:top-[4rem] backdrop-blur z-10">
+    <nav className="bg-white shadow-lg sticky top-0 md:top-[3.4rem] xl:top-[4rem] backdrop-blur z-10 px-[2rem] p-2 md:p-0 border border-[#d6d2d2]">
       <div className="max-w-[1177px] w-full mx-auto md:px-[20px]">
         <div className="flex justify-between items-center xs:p-3 xl:px-0 md:h-16">
           {/* Logo */}
@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
 <div className="flex-shrink-0">
-            <Link href="/" className="xs:text-[25px] md:text-[20px] xl:text-[34px] font-bold leading-[34px]">
+            <Link href="/" className="text-[25px] md:text-[20px] xl:text-[34px] font-bold leading-[34px]">
             Hekto
             </Link>
           </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
         
 {/* search bar */}
 
-<div className="xs:hidden md:flex md:max-w-[200px] xl:max-w-[317px] w-full md:h-[30px] xl:h-[40px] bg-red-500 items-center border border-gray-300  focus-within:bg-red-600 transition-colors duration-300">
+<div className="hidden md:flex md:max-w-[200px] xl:max-w-[317px] w-full md:h-[30px] xl:h-[40px] bg-red-500 items-center border border-gray-300  focus-within:bg-red-600 transition-colors duration-300">
   <input
     type="text"
     placeholder="Search..."

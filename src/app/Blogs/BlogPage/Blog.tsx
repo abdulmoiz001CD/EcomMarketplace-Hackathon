@@ -1,10 +1,55 @@
 import React from 'react'
-import Card from '@/app/Components/BlogPage/Card'
+import Card  from './Card'
 import { CiSearch } from "react-icons/ci";
 import FlexCard from './FlexCard';
 import Image from 'next/image';
+import { groq } from 'next-sanity'
+import { client } from '@/sanity/lib/client';
 
-const Blog = () => {
+
+
+
+export type Blogs = {
+  _id: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  author:string;
+
+  mainImage:{
+    asset:{
+      url:string
+    }
+  }
+  publishedAt: string;
+  body: Array<any>;  
+  excerpt: string;
+  
+}
+
+const Blog = async() => {
+
+  const query = groq`
+  *[_type == "post"] {
+    title,
+    slug,
+    author,
+    mainImage{
+    asset->{
+    url
+    }
+    },
+    publishedAt,
+    body,
+    excerpt,
+   
+  }
+`
+
+const blog:Blogs[] = await client.fetch(query)
+
+
   return (
 <>
 
@@ -14,9 +59,17 @@ const Blog = () => {
 
 <div className='max-w-[870px] w-full flex flex-col  gap-[76px]  px-4 pt-[140px] mb-[40px]'>
 
-<Card image='./images/blogp1.svg' title='Mauris at orci non vulputate diam tincidunt nec.'/>
-<Card image='./images/blogp2.svg' title='Aenean vitae in aliquam ultrices lectus. Etiam.'/>
-<Card image='./images/blogp3.svg' title='Sit nam congue feugiat nisl, mauris amet nisi. '/>
+
+{
+  blog.map((value,index)=>{
+    return(
+      <Card key={index} image= {value.mainImage?.asset?.url || ""} title={value.title} author={value.author} publishedAt={value.publishedAt} excerpt={value.excerpt} slug={value.slug.current} />
+    )
+  })
+}
+
+
+
 
 
 <ul className="flex gap-2 justify-between max-w-[236px] w-full mx-auto">
