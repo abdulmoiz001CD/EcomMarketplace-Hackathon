@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({id,image, title,name,quantity,
 
 
   return (
-    <div className="group relative flex flex-col w-[360px] bg-[#F7F7F7]  overflow-hidden items-center justify-center text-center transition-transform hover:scale-105">
+    <div className="group relative flex flex-col max-w-[360px] w-full bg-[#F7F7F7]  overflow-hidden items-center justify-center text-center transition-transform hover:scale-105">
       <div className="relative h-[236px] w-[240px] flex items-center justify-center bg-[#F7F7F7]">
         <Image
           src={image}

@@ -9,7 +9,7 @@ import Discount from '@/app/Home/Home_Comp/DiscountSec/Discount'
 import OffItem from '@/app/Home/Home_Comp/OffItem'
 import TopCatorgry from '@/app/Home/Home_Comp/TopCategories/TopCatorgry'
 import Update from '@/app/Home/Home_Comp/Update'
-import Blog from '@/app/Components/Blog'
+import Blog from '@/app/Home/Home_Comp/LatestBlog/Blog'
 
 const page = () => {
   return (
