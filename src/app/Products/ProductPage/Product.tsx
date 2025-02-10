@@ -40,12 +40,12 @@ const FashionItems = async () => {
     <>
       <section className="container mx-auto px-4 pt-32 pb-12">
         {/* Heading Section */}
-        <div className="flex flex-col gap-6 items-center md:flex-row md:justify-between">
+        <div className="flex flex-col gap-6 items-center xl:flex-row md:justify-between">
           <div className="text-center md:text-left">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">
+            <h2 className="text-2xl md:text-3xl font-bold">
               Ecommerce Accessories & Fashion Items
             </h2>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-center xl:text-start text-gray-500 mt-2">
               About 9,620 results (0.62 seconds)
             </p>
           </div>
@@ -92,7 +92,7 @@ const FashionItems = async () => {
 
         {/* Products Grid */}
         <div className="mt-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {data.map((value) => (
               <Link href={`/ProductDetail/${value._id}`} key={value._id}>
                 {/* You can wrap Card in an anchor if needed */}

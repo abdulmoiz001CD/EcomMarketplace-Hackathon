@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, title, price, discount
             {/* Product Details */}
             <div className="flex-1 p-4 md:p-6 flex flex-col justify-center bg-white">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
-                    <h3 className="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2">{title}</h3>
+                    <h3 className="font-bold text-lg lg:text-xl xl:text-2xl line-clamp-2">{title}</h3>
                     <div className="flex flex-col md:text-right">
                         <span className="text-sm line-through text-gray-400">{price}</span>
                         <span className="text-[#FB2E86] text-lg md:text-xl lg:text-2xl font-semibold">
